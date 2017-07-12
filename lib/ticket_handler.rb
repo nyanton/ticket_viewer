@@ -1,28 +1,65 @@
 require 'faraday'
-require 'json'
+require 'zendesk_api'
 
 class Ticket_handler
 
   def initialize
-    @conn = Faraday.new(:url => "https://orn.zendesk.com/api/v2/tickets/")
-    @conn.basic_auth('anton.o@live.com.au', 'APassword')
+    #@connection = Faraday.new(:url => "https://orn.zendesk.com/api/v2/tickets/")
+    #@connection.basic_auth('anton.o@live.com.au', 'APassword')
+
+    @client = ZendeskAPI::Client.new do |config|
+      #url
+      config.url = "https://orn.zendesk.com/api/v2"
+
+      #authentication
+      config.username = "anton.o@live.com.au"
+      config.password = "APassword"
+
+    end
+
   end
 
-  def show_ticket(ticketID)
-    #takes in the id of a ticket, and then retrieves the json from the respective url.
-    ticket = @conn.get "#{ticketID}.json"
-    puts ticket.status
-    json_ticket = JSON.parse(ticket.body)
-    puts json_ticket["ticket"]["id"]
-    puts json_ticket["ticket"]["subject"]
+  def totalTickets
+    total = 0
+
+    @client.tickets.all do |ticket|
+      total += 1
+    end
+
+    return total
+
   end
 
-  def show_page(page)
+  def showTicket(ticketID)
+    ticket = @client.tickets.find(:id => ticketID)
+
+    unless ticket == nil
+      puts ticket[:subject]
+
+    else
+      puts "Invalid Ticket ID"
+
+    end
+
+  end
+
+  def showPage(page)
     #takes the page number to be shown, and retrieves a summary of tickets.
     #will also return the next page and previous page?
+
+    tickets = @client.tickets.page(page).per_page(25)
+
+    tickets.each do |ticket|
+      puts ticket[:subject]
+    end
+  end
+
+  def responseCheck(response)
+    #used to check if response is within 200
+    #if response is outside of range, then reply with error
+
+    puts response.status
+
   end
 
 end
-
-blah = Ticket_handler.new
-blah.show_ticket(1)
