@@ -23,19 +23,20 @@ class Menu
   def ticketList(tickets)
     currentPage = 1
     input = nil
+    maxPage = ((tickets.totalTickets)/25) + 1
 
     while (input != 'back')
 
       tickets.showPage(currentPage)
 
       puts "---------------------------\n"
-      puts "Enter \'next\' for next page"
+      puts "Enter \'next\' for next page" unless currentPage == maxPage
       puts "Enter \'prev'\ for previous page" unless currentPage == 1
       puts "Enter \'back\' to return to the main menu"
       puts "---------------------------\n"
       input = gets.chomp
 
-      if (input == "next")
+      if (input == "next" and currentPage < maxPage)
         currentPage += 1
       elsif (input == "prev" and currentPage > 1)
         currentPage -= 1

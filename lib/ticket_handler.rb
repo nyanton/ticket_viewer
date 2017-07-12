@@ -34,8 +34,12 @@ class Ticket_handler
     ticket = @client.tickets.find(:id => ticketID)
 
     unless ticket == nil
-      puts ticket[:subject]
-
+      puts "---------------------------\n"
+      puts "Ticket Subject:"
+      puts "\t#{ticket[:subject]}"
+      puts "Ticket Content:"
+      puts"\t#{ticket[:description]}\n"
+      puts "---------------------------\n"
     else
       puts "Invalid Ticket ID"
 
@@ -49,9 +53,14 @@ class Ticket_handler
 
     tickets = @client.tickets.page(page).per_page(25)
 
+    puts "---------------------------\n"
     tickets.each do |ticket|
-      puts ticket[:subject]
+      puts "ID: #{ticket[:id]}"
+      puts "\t #{ticket[:subject]}"
+      puts "----------"
     end
+    puts "---------------------------\n"
+
   end
 
   def responseCheck(response)
