@@ -23,7 +23,7 @@ class Menu
   def ticketList(tickets)
     currentPage = 1
     input = nil
-    maxPage = ((tickets.totalTickets)/25) + 1
+    maxPage = ((tickets.total)/25) + 1
 
     while (input != 'back')
 
@@ -36,10 +36,32 @@ class Menu
       puts "---------------------------\n"
       input = gets.chomp
 
-      if (input == "next" and currentPage < maxPage)
-        currentPage += 1
-      elsif (input == "prev" and currentPage > 1)
-        currentPage -= 1
+      case input
+
+      when "next"
+        if(currentPage < maxPage)
+          currentPage += 1
+
+        else
+          puts "--Already on last page!--"
+
+        end
+
+      when "prev"
+        if currentPage > 1
+          currentPage -= 1
+
+        else
+          puts "--Already on first page!--"
+
+        end
+
+      when "back"
+        puts "--Returning to Main Menu--"
+
+      else
+        puts "--Invalid Input!--"
+
       end
 
     end
