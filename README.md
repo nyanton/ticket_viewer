@@ -10,11 +10,11 @@ As the program is started, it will attempt to connect to the API endpoint using 
 
 The ticket viewer has two main functionalities: to show a list of tickets that belong to the account, and to show the contents of a specified ticket.
 
-To look at a list of the tickets, enter '*1*' from the main menu.  From there, a list of at most 25 tickets will be shown.  To navigate the list, enter '*next*' to go to the next page, or '*prev*' to go back a page.  The program handles these inputs if a user were to go to a previous page from the first page, or next page from the last page.  To return to the main menu, the user is to enter in '*back*'.  Each ticket will show their ID, Status, and Subject.
+To look at a list of the tickets, enter '**1**' from the main menu.  From there, a list of at most 25 tickets will be shown.  To navigate the list, enter '**next**' to go to the next page, or '**prev**' to go back a page.  The program handles these inputs if a user were to go to a previous page from the first page, or next page from the last page.  To return to the main menu, the user is to enter in '**back**'.  Each ticket will show their ID, Status, and Subject.
 
-To look at a specific ticket, enter '*2*' from the main menu.  The program will then ask the user to enter the ID number of the ticket they would like to examine.  Once entered, the user will be presented with the ID, Status, Subject, and Content of the ticket.  The user will the be returned back to the main menu, regardless of whether the input is successful or not.
+To look at a specific ticket, enter '**2**' from the main menu.  The program will then ask the user to enter the ID number of the ticket they would like to examine.  Once entered, the user will be presented with the ID, Status, Subject, and Content of the ticket.  The user will the be returned back to the main menu, regardless of whether the input is successful or not.
 
-To exit the program, enter "*quit*" from the main menu.
+To exit the program, enter "**quit**" from the main menu.
 
 
 # Assumptions
