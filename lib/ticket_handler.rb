@@ -4,6 +4,9 @@ class Ticket_handler
   attr_reader :total, :connection
 
   def initialize
+  end
+
+  def startConnection
     #@client is used for connection and communicating with the API endpoint
     @client = ZendeskAPI::Client.new do |config|
       #url to connect to
@@ -25,25 +28,17 @@ class Ticket_handler
       @connection = false
 
     end
-
   end
 
   def showTicket(ticketID)
 
     begin
       ticket = @client.tickets.find!(:id => ticketID)
-      puts "---------------------------"
-      puts "Ticket ID:        #{ticket[:id]}"
-      puts "Ticket Status:    #{ticket[:status]}"
-      puts "Ticket Subject:   #{ticket[:subject]}"
-      puts "Ticket Content:"
-      puts "#{ticket[:description]}"
-      puts "---------------------------"
+
+      return ticket
 
     rescue Exception => e
-      puts "---------------------------"
-      puts "--Invalid Ticket ID!--"
-      puts "---------------------------"
+      return -1
 
     end
 
@@ -54,23 +49,8 @@ class Ticket_handler
     #will only show 25 tickets at a time as per specification
 
       tickets = @client.tickets.page(page).per_page(25)
-      first = tickets.first[:id]
-      last = tickets.last[:id]
 
-      puts "---------------------------"
-
-      tickets.each do |ticket|
-        puts "ID:        #{ticket[:id]}"
-        puts "Status:    #{ticket[:status]}"
-        puts "Subject:   #{ticket[:subject]}"
-        puts "------------"
-
-      end
-
-      puts "---------------------------"
-      puts "Showing tickets: #{first} - #{last} out of #{@total}"
-
-
+      return tickets
 
   end
 
