@@ -12,14 +12,15 @@ if menu.tickets.connection
     case input
 
     when "1"
-      #shows all tickets, with 25 on each page
+      #shows all tickets, with 25 on each page.
       menu.ticketList
 
     when "2"
+      #search for a ticket based on ID.
       menu.singleTicket
 
     when "quit"
-      #exit the program
+      #exit the program.
       menu.quit
 
     else

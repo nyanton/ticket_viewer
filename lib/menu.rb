@@ -115,6 +115,7 @@ class Menu
     rescue Exception => e
       #this exception would be reached if there was a connection problem, after having already connected to the API once.
       connectionError
+
     end
 
   end
