@@ -6,6 +6,8 @@ This program makes use of the zendesk_api gem. The zendesk_api is used to access
 # Using the Ticket Viewer
 Simply clone the repository, or download the zip file.  Then navigate to the folder via command line and then use `ruby ticket_viewer.rb`.  
 
+If you do not have the zendesk_api or scrub_rb gem already installed, run `bundle install`.
+
 As the program is started, it will attempt to connect to the API endpoint using basic authentication.  If a connection fails here, then the program terminates.  Failure would be due to no internet connection, or the authentication details have been altered.
 
 The ticket viewer has two main functionalities:
